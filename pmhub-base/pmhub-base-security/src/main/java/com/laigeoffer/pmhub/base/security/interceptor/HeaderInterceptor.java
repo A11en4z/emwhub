@@ -78,6 +78,8 @@ public class HeaderInterceptor implements AsyncHandlerInterceptor {
     // 创建一个默认的 LoginUser 对象
     private LoginUser createDefaultLoginUser() {
         LoginUser defaultLoginUser = new LoginUser();
+
+        // 默认的用户ID和用户名
         defaultLoginUser.setUserId(173L);  // 设置默认的用户ID
         defaultLoginUser.setUsername(Constants.DEMO_ACCOUNT);  // 设置默认的用户名
 

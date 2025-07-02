@@ -187,8 +187,11 @@ public class TokenService {
      * @return 令牌
      */
     public void verifyToken(LoginUser loginUser) {
+        // 从loginUser对象中获取令牌的过期时间，单位为毫秒
         long expireTime = loginUser.getExpireTime();
+        // 获取当前系统时间
         long currentTime = System.currentTimeMillis();
+        // 如果当前时间距离过期时间小于20分钟，需要刷新令牌的过期时间
         if (expireTime - currentTime <= MILLIS_MINUTE_TEN) {
             refreshToken(loginUser);
         }
@@ -200,9 +203,11 @@ public class TokenService {
      * @param loginUser 登录信息
      */
     public void refreshToken(LoginUser loginUser) {
+        // 用户登录时间设置为当前时间
         loginUser.setLoginTime(System.currentTimeMillis());
+        // 计算新的令牌的过期时间，单位为分钟
         loginUser.setExpireTime(loginUser.getLoginTime() + expireTime * MILLIS_MINUTE);
-        // 根据uuid将loginUser缓存
+        // 根据uuid将loginUser缓存到redis
         String userKey = getTokenKey(loginUser.getToken());
         redisService.setCacheObject(userKey, loginUser, expireTime, TimeUnit.MINUTES);
     }

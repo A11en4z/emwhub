@@ -71,6 +71,7 @@ public class AuthLogic
      */
     public LoginUser getLoginUser()
     {
+        // 从请求头中获取token
         String token = SecurityUtils.getToken();
         if (token == null)
         {

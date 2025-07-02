@@ -22,10 +22,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
-import java.net.URI;
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * 网关鉴权
  *

@@ -37,10 +37,11 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry)
     {
-        registry.addInterceptor(getHeaderInterceptor())
-                .addPathPatterns("/**")
-                .excludePathPatterns(excludeUrls)
-                .order(-10);
+        registry.addInterceptor(getHeaderInterceptor())  // 自定义的拦截器
+                .addPathPatterns("/**")                  // 拦截所有请求路径
+                .excludePathPatterns(excludeUrls)        // 除了白名单
+                .order(-10);                             // 设置优先级（数字越小优先级越高）
+
     }
 
     /**

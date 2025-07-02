@@ -24,7 +24,7 @@ public class RedissonDistributedLock implements IDistributedLock {
     /**
      * 统一前缀
      */
-    @Value("${redisson.lock.prefix:bi:distributed:lock}")
+    @Value("${redisson.lock.prefix:bi:distributed:lock}") //配置文件读取前缀注入成员变量
     private String prefix;
 
     @Override
@@ -54,7 +54,7 @@ public class RedissonDistributedLock implements IDistributedLock {
     public ILock tryLock(String key, long tryTime, long lockTime, TimeUnit unit, boolean fair)
             throws Exception {
         RLock lock = getLock(key, fair);
-        boolean lockAcquired;
+        boolean lockAcquired; // 存储获取锁的结果
         // 尝试获取锁，获取不到超时异常,不支持自动续期
         if (lockTime > 0L) {
             lockAcquired = lock.tryLock(tryTime, lockTime, unit);
@@ -77,6 +77,7 @@ public class RedissonDistributedLock implements IDistributedLock {
      */
     private RLock getLock(String key, boolean fair) {
         RLock lock;
+        // 类定义的统一前缀和传入的key拼接成完整的锁键
         String lockKey = prefix + ":" + key;
         if (fair) {
             // 获取公平锁

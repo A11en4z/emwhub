@@ -56,6 +56,7 @@ public class SecurityUtils {
      **/
     public static LoginUser getLoginUser() {
         try {
+
             return SecurityContextHolder.get(SecurityConstants.LOGIN_USER, LoginUser.class);
         } catch (Exception e) {
             throw new ServiceException("获取用户信息异常", HttpStatus.UNAUTHORIZED);

@@ -16,10 +16,12 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class SecurityContextHolder
 {
+    // TTL 线程池传递参数
     private static final TransmittableThreadLocal<Map<String, Object>> THREAD_LOCAL = new TransmittableThreadLocal<>();
 
     public static void set(String key, Object value)
     {
+        // 采用ConcurrentHashMap 防止多线程并发问题
         Map<String, Object> map = getLocalMap();
         map.put(key, value == null ? StringUtils.EMPTY : value);
     }

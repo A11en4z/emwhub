@@ -47,10 +47,12 @@ public class DistributedLockAspect {
      */
     private DefaultParameterNameDiscoverer nameDiscoverer = new DefaultParameterNameDiscoverer();
 
+    // 定义切点，拦截所有被@DistributedLock注解的方法
     @Pointcut("@annotation(com.laigeoffer.pmhub.base.security.annotation.DistributedLock)")
     public void distributorLock() {
     }
 
+    // 环绕通知，会在目标方法执行前后执行
     @Around("distributorLock()")
     public Object around(ProceedingJoinPoint pjp) throws Throwable {
         // 获取DistributedLock

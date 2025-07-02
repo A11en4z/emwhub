@@ -10,9 +10,9 @@ import java.lang.annotation.*;
  * @description EnableDistributedLock 元注解，开启分布式锁功能
  * @create 2024-06-17-10:56
  */
-@Target(ElementType.TYPE)
-@Retention(RetentionPolicy.RUNTIME)
-@Documented
-@Import({DistributedLockAspect.class})
+@Target(ElementType.TYPE)  // 表示 EnableDistributedLock 注解只能应用于类、接口（包括注解类型）或者枚举类型。
+@Retention(RetentionPolicy.RUNTIME) // 该注解在运行时可见，这样程序在运行时能通过反射机制获取注解信息。
+@Documented  // 该注解会被包含在 JavaDoc 文档中
+@Import({DistributedLockAspect.class}) // 自动注入DistributedLockAspect切面类到Spring容器中
 public @interface EnableDistributedLock {
 }

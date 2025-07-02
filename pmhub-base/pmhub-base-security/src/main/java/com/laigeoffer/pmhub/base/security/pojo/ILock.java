@@ -22,6 +22,7 @@ public class ILock implements AutoCloseable {
 
     @Override
     public void close() throws Exception {
+        // 如果锁不为空，调用接口的unlock方法释放锁
         if (Objects.nonNull(lock)) {
             distributedLock.unLock(lock);
         }
