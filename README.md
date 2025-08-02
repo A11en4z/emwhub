@@ -327,9 +327,9 @@ pmhub-system 启动前需要修改 nacos 中的 pmhub-system-dev.yml 配置文�
 
 > 注意：微服务版本直接启动 pmhub-ui 即可，如果是单体版本的前端需要到 pmhub-boot下的 pmhub-ui 启动。
 
-### 4.4、Swagger 地址
+### 4.4、在线接口文档
 
-http://localhost:1024/dev-api/swagger-ui/index.html
+[https://laigeoffer.cn/pmhub/api-doc.html](https://laigeoffer.cn/pmhub/api-doc.html)
 
 ### 4.5、服务器部署（Docker 方式）
 
